@@ -1,0 +1,11 @@
+val inputRDD = sc.textFile("Example.dat")
+inputRDD.collect()
+val inputWords = inputRDD.flatMap(x => x.split(" "))
+inputWords.take(10)
+val inputPairs = inputWords.map( x => (x,1))
+inputPairs.take(10)
+val inputWordCount = inputPairs.reduceByKey( ( x,y) => x + y)
+inputWordCount.take(10)
+for(x <- inputWordCount.collect()){
+pritln(x)
+}
